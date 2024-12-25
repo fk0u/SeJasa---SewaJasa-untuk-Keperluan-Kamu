@@ -64,5 +64,11 @@
       "price": 15,
       "description": "Jasa Midman untuk 1 Transaksi.",
       "image": "gaut.jpg"
+    },
+    {
+      "name": "Jasa GrowScan",
+      "price": 15,
+      "description": "Jasa GrowScan untuk 1x Scan [COMING SOON].",
+      "image": "break.jpg"
     }
   ]
