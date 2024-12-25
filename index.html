@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SeJasa - Jasa Game Growtopia</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    body {
+      background: linear-gradient(to bottom right, #1F2937, #374151);
+      color: #F3F4F6;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .header-gradient {
+      background: linear-gradient(to right, #68D391, #F6E05E);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .golden-ratio {
+      padding-top: 61.8%;
+    }
+    .smooth-scroll {
+      scroll-behavior: smooth;
+    }
+    .service-card {
+      transition: transform 0.3s;
+    }
+    .service-card:hover {
+      transform: scale(1.05);
+    }
+    .hamburger {
+      cursor: pointer;
+      width: 24px;
+      height: 24px;
+      transition: all 0.25s;
+      position: relative;
+    }
+    .hamburger-top,
+    .hamburger-middle,
+    .hamburger-bottom {
+      position: absolute;
+      width: 24px;
+      height: 2px;
+      top: 0;
+      left: 0;
+      background: #fff;
+      transform: rotate(0);
+      transition: all 0.5s;
+    }
+    .hamburger-middle {
+      transform: translateY(7px);
+    }
+    .hamburger-bottom {
+      transform: translateY(14px);
+    }
+    .open .hamburger-top {
+      transform: rotate(45deg) translateY(6px) translateX(6px);
+    }
+    .open .hamburger-middle {
+      display: none;
+    }
+    .open .hamburger-bottom {
+      transform: rotate(-45deg) translateY(6px) translateX(-6px);
+    }
+    .preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .preloader.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 5px solid #fff;
+      border-top-color: #68D391;
+      animation: spin 1s infinite linear;
+    }
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    .fade-out {
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+    @media (max-width: 640px) {
+      .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+    }
+    .animate-pulse {
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
+    .animate-bounce {
+      animation: bounce 1s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(-5%);
+        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+      }
+      50% {
+        transform: translateY(0);
+        animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+      }
+    }
+  </style>
+</head>
+<body class="smooth-scroll">
+  <header class="bg-gray-800 bg-opacity-90 py-4 fixed w-full z-10">
+    <div class="container mx-auto flex justify-between items-center px-4">
+      <a href="#home" class="text-2xl font-bold header-gradient">SeJasa</a>
+      <nav class="hidden lg:flex space-x-4">
+        <a href="#home" class="text-green-400 hover:text-green-500">Home</a>
+        <a href="#services" class="text-green-400 hover:text-green-500">Services</a>
+        <a href="#about" class="text-green-400 hover:text-green-500">About</a>
+        <a href="#contact" class="text-green-400 hover:text-green-500">Contact Us</a>
+        <select id="languageSelect" class="bg-gray-700 text-white rounded py-1 px-2">
+          <option value="id">Bahasa Indonesia</option>
+          <option value="en">English</option>
+        </select>
+      </nav>
+      <div class="lg:hidden">
+        <div class="hamburger" id="hamburger">
+          <div class="hamburger-top"></div>
+          <div class="hamburger-middle"></div>
+          <div class="hamburger-bottom"></div>
+        </div>
+      </div>
+    </div>
+    <nav class="hidden lg:hidden bg-gray-800 bg-opacity-90 py-2" id="mobileMenu">
+      <div class="container mx-auto flex flex-col space-y-2 px-4">
+        <a href="#home" class="text-green-400 hover:text-green-500">Home</a>
+        <a href="#services" class="text-green-400 hover:text-green-500">Services</a>
+        <a href="#about" class="text-green-400 hover:text-green-500">About</a>
+        <a href="#contact" class="text-green-400 hover:text-green-500">Contact Us</a>
+        <select id="languageSelectMobile" class="bg-gray-700 text-white rounded py-1 px-2">
+          <option value="id">Bahasa Indonesia</option>
+          <option value="en">English</option>
+        </select>
+      </div>
+    </nav>
+  </header>
+
+  <section id="home" class="bg-gray-800 bg-opacity-80 py-28">
+    <div class="container mx-auto text-center px-4">
+      <h2 class="text-4xl font-bold mb-4 header-gradient animate-pulse" data-translate="home-title">Selamat Datang di SeJasa</h2>
+      <p class="text-xl mb-8" data-translate="home-description">Menyediakan layanan premium untuk pemain Growtopia</p>
+      <a href="#services" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded animate-bounce" data-translate="home-cta">
+        Jelajahi Layanan
+      </a>
+    </div>
+  </section>
+
+  <section id="services" class="container mx-auto py-12 px-4">
+    <h2 class="text-3xl font-bold mb-8 text-center header-gradient" data-translate="services-title">Layanan Kami</h2>
+    <div id="serviceList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+  </section>
+
+  <section id="order" class="container mx-auto py-12 px-4 hidden">
+    <h2 class="text-3xl font-bold mb-8 text-center header-gradient" data-translate="order-title">Buat Pesanan</h2>
+    <div id="orderForm">
+      <!-- Order form will be dynamically loaded here -->
+    </div>
+  </section>
+
+  <section id="about" class="bg-gray-800 bg-opacity-80 py-12">
+    <div class="container mx-auto px-4">
+      <h1 class="text-3xl font-bold mb-8 text-center header-gradient" data-translate="about-title">Tentang Kami</h2>
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="text-align-left">
+          <p class="text-lg mb-4" data-translate="about-description">
+            <span class="text-xl font-bold header-gradient">SeJasa</span> adalah penyedia layanan terpercaya untuk pemain Growtopia. Kami menawarkan berbagai layanan berkualitas tinggi untuk membantu Anda dalam permainan.
+          </p>
+          <p class="text-lg" data-translate="about-mission">
+            Misi kami adalah memberikan pengalaman terbaik bagi pelanggan dengan layanan yang cepat, andal, dan aman.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="container mx-auto py-12 px-4">
+    <h2 class="text-3xl font-bold mb-8 text-center header-gradient" data-translate="faq-title">FAQ</h2>
+    <div id="faqList" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Kode FAQ items dengan Tampilan Desain Card dengan Dark Modern Style dan memiliki deskripsi serta animasi interaktif seperti tutup dan buka -->
+       <!-- Kode FAQ items -->
+        <div class="bg-gray-700 p-6 rounded-md shadow">
+            <h3 class="text-xl font-bold">Apa itu SeJasa?</h3>
+            <p class="text-gray-400 mb-4">SeJasa adalah penyedia layanan terpercaya untuk pemain Growtopia. Kami menawarkan berbagai layanan berkualitas tinggi untuk membantu Anda dalam permainan.</p>
+            <!-- Kode Icon untuk Lipat Tutup dan Buka serta fungsional nya juga -->
+            <div class="flex justify-end">
+                <i class="fas fa-angle-down text-white"></i>
+            </div>
+        </div>
+        <!-- Kode FAQ items -->
+        <div class="bg-gray-700 p-6 rounded-md shadow">
+            <h3 class="text-xl font-bold">Bagaimana cara memesan layanan?</h3>
+            <p class="text-gray-400 mb-4">Untuk memesan layanan, silakan klik tombol "Pesan Sekarang" di layanan yang Anda inginkan.</p>
+            <!-- Kode Icon untuk Lipat Tutup dan Buka serta fungsional nya juga -->
+            <div class="flex justify-end">
+                <i class="fas fa-angle-down text-white"></i>
+            </div>
+        </div>
+        <!-- Kode FAQ items -->
+        <div class="bg-gray-700 p-6 rounded-md shadow">
+            <h3 class="text-xl font-bold">Apakah layanan kami aman?</h3>
+            <p class="text-gray-400 mb-4">Ya, kami menggunakan metode pembayaran aman untuk memastikan keamanan pembayaran Anda.</p>
+            <!-- Kode Icon untuk Lipat Tutup dan Buka serta fungsional nya juga -->
+            <div class="flex justify-end">
+                <i class="fas fa-angle-down text-white"></i>
+            </div>
+        </div>
+
+    </div>
+  </section>
+
+  <section id="contact" class="container mx-auto py-12 px-4">
+    <h2 class="text-3xl font-bold mb-8 text-center header-gradient" data-translate="contact-title">Hubungi Kami</h2>
+    <div class="flex justify-center">
+      <a href="https://wa.me/628111035042" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded animate-bounce">
+        <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <footer class="bg-gray-800 bg-opacity-90 py-4 text-center">
+    <p>&copy; 2024 SeJasa. All rights reserved.</p>
+  </footer>
+
+  <div class="preloader">
+    <div class="spinner"></div>
+  </div>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        mobileMenu.classList.toggle('hidden');
+        });
+
+        window.addEventListener('resize', () => {
+        if (window.innerWidth > 1024) {
+            mobileMenu.classList.add('hidden');
+            hamburger.classList.remove('open');
+        }
+        });
+    
+        //Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+            });
+        });
+        });
+
+        //close orderForm Section when Explore Services clicked
+        document.getElementById('services').addEventListener('click', () => {
+        const orderSection = document.getElementById('order');
+        orderSection.classList.add('hidden');
+        })
+
+        //close and open faq items when icons are clicked and just show titles when closed
+        const faqItems = document.querySelectorAll('.bg-gray-700');
+        faqItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const icon = item.querySelector('i');
+            icon.classList.toggle('fa-angle-up');
+            icon.classList.toggle('fa-angle-down');
+            item.querySelector('p').classList.toggle('hidden');
+        });
+        })
+
+    const translations = {
+      id: {
+        'home-title': 'Selamat Datang di SeJasa',
+        'home-description': 'Menyediakan layanan premium untuk pemain Growtopia',
+        'home-cta': 'Jelajahi Layanan',
+        'services-title': 'Layanan Kami',
+        'order-now': 'Pesan Sekarang',
+        'about-title': 'Tentang Kami',
+        'about-description': 'SeJasa adalah penyedia layanan terpercaya untuk pemain Growtopia. Kami menawarkan berbagai layanan berkualitas tinggi untuk membantu Anda dalam permainan.',
+        'about-mission': 'Misi kami adalah memberikan pengalaman terbaik bagi pelanggan dengan layanan yang cepat, andal, dan aman.',
+        'contact-title': 'Hubungi Kami',
+        'order-title': 'Buat Pesanan',
+        'world-name': 'Nama World',
+        'owner-name': 'Nama Pemilik',
+        'whatsapp-number': 'Nomor WhatsApp',
+        'quantity': 'Jumlah',
+        'payment-method': 'Metode Pembayaran',
+        'select-payment': 'Pilih metode pembayaran',
+        'total-price': 'Total Harga',
+        'payment-proof': 'Bukti Pembayaran',
+        'submit-order': 'Kirim Pesanan'
+      },
+      en: {
+        'home-title': 'Welcome to SeJasa',
+        'home-description': 'Providing premium services for Growtopia players',
+        'home-cta': 'Explore Services',
+        'services-title': 'Our Services',
+        'order-now': 'Order Now',
+        'about-title': 'About Us',
+        'about-description': 'SeJasa is a trusted service provider for Growtopia players. We offer a variety of high-quality services to assist you in the game.',
+        'about-mission': 'Our mission is to provide the best experience for customers with fast, reliable, and secure services.',
+        'contact-title': 'Contact Us',
+        'order-title': 'Place an Order',
+        'world-name': 'World Name',
+        'owner-name': 'Owner Name',
+        'whatsapp-number': 'WhatsApp Number',
+        'quantity': 'Quantity',
+        'payment-method': 'Payment Method',
+        'select-payment': 'Select payment method',
+        'total-price': 'Total Price',
+        'payment-proof': 'Payment Proof',
+        'submit-order': 'Submit Order'
+      }
+    };
+
+    function updateTranslations(language) {
+      const elements = document.querySelectorAll('[data-translate]');
+      elements.forEach(element => {
+        const key = element.getAttribute('data-translate');
+        element.textContent = translations[language][key];
+      });
+    }
+
+    const languageSelect = document.getElementById('languageSelect');
+    languageSelect.addEventListener('change', () => {
+      const selectedLanguage = languageSelect.value;
+      updateTranslations(selectedLanguage);
+    });
+
+    const languageSelectMobile = document.getElementById('languageSelectMobile');
+    languageSelectMobile.addEventListener('change', () => {
+      const selectedLanguage = languageSelectMobile.value;
+      updateTranslations(selectedLanguage);
+    });
+
+    fetch('services.json')
+      .then(response => response.json())
+      .then(services => {
+        const serviceList = document.getElementById('serviceList');
+        services.forEach(service => {
+          const serviceCard = `
+            <div class="bg-gray-700 p-6 rounded-md shadow service-card">
+              <h3 class="text-xl font-bold">${service.name}</h3>
+              <p class="text-gray-400 mb-4">${service.description}</p>
+              <p class="text-green-400 font-bold text-lg">${service.price} WL</p>
+              <a href="#order" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mt-4 inline-block" data-translate="order-now" onclick="showOrderForm('${service.name}')">
+                Pesan Sekarang
+              </a>
+            </div>
+          `;
+          serviceList.innerHTML += serviceCard;
+        });
+      });
+
+    function showOrderForm(serviceName) {
+      const serviceSection = document.getElementById('services');
+      const orderSection = document.getElementById('order');
+      const orderForm = document.getElementById('orderForm');
+      const preloader = document.querySelector('.preloader');
+        
+      preloader.classList.add('active');
+
+        serviceSection.classList.add('fade-out');
+
+        setTimeout(() => {
+            serviceSection.classList.add('hidden');
+            orderSection.classList.remove('hidden');
+
+            orderForm.innerHTML = `
+            <div class="bg-gray-700 p-6 rounded shadow">
+                <h3 class="text-xl font-bold mb-4">Order ${serviceName}</h3>
+                <form id="orderFormData">
+                <div class="mb-4">
+                    <label for="worldName" class="block text-gray-400 font-bold mb-2" data-translate="world-name">Nama World</label>
+                    <input type="text" id="worldName" name="worldName" class="w-full bg-gray-600 text-white rounded py-2 px-3" required>
+                </div>
+                <div class="mb-4">
+                    <label for="ownerName" class="block text-gray-400 font-bold mb-2" data-translate="owner-name">Nama Pemilik</label>
+                    <input type="text" id="ownerName" name="ownerName" class="w-full bg-gray-600 text-white rounded py-2 px-3" required>
+                </div>
+                <div class="mb-4">
+                    <label for="whatsappNumber" class="block text-gray-400 font-bold mb-2" data-translate="whatsapp-number">Nomor WhatsApp</label>
+                    <input type="text" id="whatsappNumber" name="whatsappNumber" class="w-full bg-gray-600 text-white rounded py-2 px-3" required>
+                </div>
+                <div class="mb-4">
+                    <label for="quantity" class="block text-gray-400 font-bold mb-2" data-translate="quantity">Jumlah</label>
+                    <input type="number" id="quantity" name="quantity" class="w-full bg-gray-600 text-white rounded py-2 px-3" min="1" required>
+                    <p class="text-gray-500 text-sm mt-1" id="quantityDescription"></p>
+                </div>
+                <div class="mb-4">
+                    <label for="paymentMethod" class="block text-gray-400 font-bold mb-2" data-translate="payment-method">Metode Pembayaran</label>
+                    <select id="paymentMethod" name="paymentMethod" class="w-full bg-gray-600 text-white rounded py-2 px-3" required>
+                    <option value="" data-translate="select-payment">Pilih metode pembayaran</option>
+                    <option value="Growtopia">Growtopia</option>
+                    <option value="GoPay">GoPay</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="totalPrice" class="block text-gray-400 font-bold mb-2" data-translate="total-price">Total Harga</label>
+                    <input type="text" id="totalPrice" name="totalPrice" class="w-full bg-gray-600 text-white rounded py-2 px-3" readonly>
+                    <p class="text-gray-500 text-sm mt-1" id="totalPriceIDR"></p>
+                </div>
+                <div class="mb-4">
+                    <label for="paymentProof" class="block text-gray-400 font-bold mb-2" data-translate="payment-proof">Bukti Pembayaran</label>
+                    <input type="file" id="paymentProof" name="paymentProof" class="w-full bg-gray-600 text-white rounded py-2 px-3" accept="image/*" required>
+                </div>
+                <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded animate-bounce" data-translate="submit-order">
+                    Kirim Pesanan
+                </button>
+                </form>
+            </div>
+            `;
+
+            updateTranslations(languageSelect.value);
+
+            const quantityDescription = document.getElementById('quantityDescription');
+            const quantity = document.getElementById('quantity');
+            const totalPrice = document.getElementById('totalPrice');
+            const totalPriceIDR = document.getElementById('totalPriceIDR');
+            const price = getServicePrice(serviceName);
+
+            switch (serviceName) {
+            case 'Jasa Harvest':
+            case 'Jasa Plant':
+            case 'Jasa Ghost':
+            case 'Jasa Clear':
+            case 'Jasa Collect & Put':
+                quantityDescription.textContent = 'per World';
+                break;
+            case 'Jasa Break':
+            case 'Jasa Move':
+                quantityDescription.textContent = 'per 2,500 Block or Seed';
+                break;
+            case 'Jasa GAUT':
+            case 'Jasa GAIA':
+            case 'Jasa UT':
+                quantityDescription.textContent = 'per Hour';
+                break;
+            }
+
+            quantity.addEventListener('input', () => {
+            const totalPriceWL = price * quantity.value;
+            totalPrice.value = totalPriceWL.toFixed(2) + ' WL';
+            totalPriceIDR.textContent = 'Rp ' + (totalPriceWL * 200).toLocaleString('id-ID');
+            });
+
+            preloader.classList.remove('active');
+        }, 500);
+        }
+
+        function getServicePrice(serviceName) {
+        switch (serviceName) {
+            case 'Jasa Harvest':
+            case 'Jasa Plant':
+            case 'Jasa UT':
+            return 7;
+            case 'Jasa GAUT':
+            return 15;
+            case 'Jasa GAIA':
+            return 8;
+            case 'Jasa Collect & Put':
+            case 'Jasa Move':
+            return 3;
+            case 'Jasa Break':
+            return 10;
+            case 'Jasa Clear':
+            return 30;
+            case 'Jasa Ghost':
+            return 4;
+        }
+        }
+
+        const orderFormData = document.getElementById('orderFormData');
+            orderFormData.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(orderFormData);
+            const orderData = {
+                serviceName: formData.get('serviceName'),
+                worldName: formData.get('worldName'),
+                ownerName: formData.get('ownerName'),
+                whatsappNumber: formData.get('whatsappNumber'),
+                quantity: formData.get('quantity'),
+                paymentMethod: formData.get('paymentMethod'),
+                totalPrice: formData.get('totalPrice')
+            };
+            sendOrderToTelegram(orderData);
+        });
+
+        function sendOrderToTelegram(orderData) {
+            const telegramBotToken = '7402046810:AAFm5LyFpkTgk-r3c_e3mpX2VAAq0WA9D-U';
+            const chatId = '-1002272136361';
+            const telegramApiUrl = `https://api.telegram.org/bot${telegramBotToken}/sendMessage`;
+          
+            const messageText = `
+              Pesanan Baru:
+              Nama Layanan: ${orderData.serviceName}
+              Nama World: ${orderData.worldName}
+              Nama Pemilik: ${orderData.ownerName}
+              Nomor WhatsApp: ${orderData.whatsappNumber}
+              Jumlah: ${orderData.quantity}
+              Metode Pembayaran: ${orderData.paymentMethod}
+              Total Harga: ${orderData.totalPrice}
+            `;
+          
+            fetch(telegramApiUrl, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                chat_id: chatId,
+                text: messageText
+              })
+            })
+              .then(response => {
+                if (response.ok) {
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Pesanan Anda telah diterima',
+                    text: 'Mohon untuk menunggu Proses Verifikasi dan Proses Pengiriman pesanan. Pesanan akan segera diKonfirmasi maksimal 1x24 Jam. Terima kasih!',
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true
+                  });
+                  resetForm();
+                } else {
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Terjadi Kesalahan',
+                    text: 'Gagal mengirim pesanan. Silakan coba lagi.',
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true
+                  });
+                }
+              })
+              .catch(error => {
+                console.error('Error:', error);
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Terjadi Kesalahan',
+                  text: 'Gagal mengirim pesanan. Silakan coba lagi.',
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true
+                });
+              });
+          }
+
+          function resetForm() {
+            const orderSection = document.getElementById('order');
+            const serviceSection = document.getElementById('services');
+            orderSection.classList.add('hidden');
+            serviceSection.classList.remove('hidden', 'fade-out');
+            document.getElementById('orderFormData').reset();
+          }
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+[
+    {
+      "name": "Jasa Harvest",
+      "price": 7,
+      "description": "Jasa harvest untuk 1 world.",
+      "image": "harvest.jpg"
+    },
+    {
+      "name": "Jasa Plant",
+      "price": 7,
+      "description": "Jasa plant untuk 1 world.",
+      "image": "plant.jpg"
+    },
+    {
+      "name": "Jasa GAUT",
+      "price": 15,
+      "description": "Jasa GAUT untuk 1 jam.",
+      "image": "gaut.jpg"
+    },
+    {
+      "name": "Jasa GAIA",
+      "price": 8,
+      "description": "Jasa GAIA untuk 1 jam.",
+      "image": "gaia.jpg"
+    },
+    {
+      "name": "Jasa UT",
+      "price": 7,
+      "description": "Jasa UT untuk 1 jam.",
+      "image": "ut.jpg"
+    },
+    {
+      "name": "Jasa Collect & Put",
+      "price": 3,
+      "description": "Jasa Collect & Put untuk 1 world.",
+      "image": "collect.jpg"
+    },
+    {
+      "name": "Jasa Move",
+      "price": 3,
+      "description": "Jasa Move untuk 2.500 Block atau Seed.",
+      "image": "move.jpg"
+    },
+    {
+      "name": "Jasa Break",
+      "price": 10,
+      "description": "Jasa Break untuk 2.500 Block atau Seed.",
+      "image": "break.jpg"
+    },
+    {
+      "name": "Jasa Clear",
+      "price": 30,
+      "description": "Jasa Clear untuk 1 world.",
+      "image": "clear.jpg"
+    },
+    {
+      "name": "Jasa Ghost",
+      "price": 4,
+      "description": "Jasa Ghost untuk 1 world.",
+      "image": "ghost.jpg"
+    }
+  ]
