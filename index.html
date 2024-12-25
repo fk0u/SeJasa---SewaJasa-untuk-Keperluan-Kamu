@@ -389,214 +389,226 @@
         });
       });
 
-    function showOrderForm(serviceName) {
-      const serviceSection = document.getElementById('services');
-      const orderSection = document.getElementById('order');
-      const orderForm = document.getElementById('orderForm');
-      const preloader = document.querySelector('.preloader');
-        
-      preloader.classList.add('active');
-
+      function showOrderForm(serviceName) {
+        const serviceSection = document.getElementById('services');
+        const orderSection = document.getElementById('order');
+        const orderForm = document.getElementById('orderForm');
+        const preloader = document.querySelector('.preloader');
+          
+        preloader.classList.add('active');
+      
         serviceSection.classList.add('fade-out');
-
+      
         setTimeout(() => {
-            serviceSection.classList.add('hidden');
-            orderSection.classList.remove('hidden');
-
-            orderForm.innerHTML = `
+          serviceSection.classList.add('hidden');
+          orderSection.classList.remove('hidden');
+      
+          orderForm.innerHTML = `
             <div class="bg-gray-700 p-6 rounded shadow">
-                <h3 class="text-xl font-bold mb-4">Order ${serviceName}</h3>
-                <form id="orderFormData">
+              <h3 class="text-xl font-bold mb-4">Order ${serviceName}</h3>
+              <form id="orderFormData">
+                <input type="hidden" name="serviceName" value="${serviceName}">
                 <div class="mb-4">
-                    <label for="worldName" class="block text-gray-400 font-bold mb-2" data-translate="world-name">Nama World</label>
-                    <input type="text" id="worldName" name="worldName" class="w-full bg-gray-600 text-white rounded py-2 px-3" required>
+                  <label for="worldName" class="block text-gray-400 font-bold mb-2" data-translate="world-name">Nama World</label>
+                  <input type="text" id="worldName" name="worldName" class="w-full bg-gray-600 text-white rounded py-2 px-3" required>
                 </div>
                 <div class="mb-4">
-                    <label for="ownerName" class="block text-gray-400 font-bold mb-2" data-translate="owner-name">Nama Pemilik</label>
-                    <input type="text" id="ownerName" name="ownerName" class="w-full bg-gray-600 text-white rounded py-2 px-3" required>
+                  <label for="ownerName" class="block text-gray-400 font-bold mb-2" data-translate="owner-name">Nama Pemilik</label>
+                  <input type="text" id="ownerName" name="ownerName" class="w-full bg-gray-600 text-white rounded py-2 px-3" required>
                 </div>
                 <div class="mb-4">
-                    <label for="whatsappNumber" class="block text-gray-400 font-bold mb-2" data-translate="whatsapp-number">Nomor WhatsApp</label>
-                    <input type="text" id="whatsappNumber" name="whatsappNumber" class="w-full bg-gray-600 text-white rounded py-2 px-3" required>
+                  <label for="whatsappNumber" class="block text-gray-400 font-bold mb-2" data-translate="whatsapp-number">Nomor WhatsApp</label>
+                  <input type="text" id="whatsappNumber" name="whatsappNumber" class="w-full bg-gray-600 text-white rounded py-2 px-3" required>
                 </div>
                 <div class="mb-4">
-                    <label for="quantity" class="block text-gray-400 font-bold mb-2" data-translate="quantity">Jumlah</label>
-                    <input type="number" id="quantity" name="quantity" class="w-full bg-gray-600 text-white rounded py-2 px-3" min="1" required>
-                    <p class="text-gray-500 text-sm mt-1" id="quantityDescription"></p>
+                  <label for="quantity" class="block text-gray-400 font-bold mb-2" data-translate="quantity">Jumlah</label>
+                  <input type="number" id="quantity" name="quantity" class="w-full bg-gray-600 text-white rounded py-2 px-3" min="1" required>
+                  <p class="text-gray-500 text-sm mt-1" id="quantityDescription"></p>
                 </div>
                 <div class="mb-4">
-                    <label for="paymentMethod" class="block text-gray-400 font-bold mb-2" data-translate="payment-method">Metode Pembayaran</label>
-                    <select id="paymentMethod" name="paymentMethod" class="w-full bg-gray-600 text-white rounded py-2 px-3" required>
+                  <label for="paymentMethod" class="block text-gray-400 font-bold mb-2" data-translate="payment-method">Metode Pembayaran</label>
+                  <select id="paymentMethod" name="paymentMethod" class="w-full bg-gray-600 text-white rounded py-2 px-3" required>
                     <option value="" data-translate="select-payment">Pilih metode pembayaran</option>
                     <option value="Growtopia">Growtopia</option>
                     <option value="GoPay">GoPay</option>
-                    </select>
+                  </select>
                 </div>
                 <div class="mb-4">
-                    <label for="totalPrice" class="block text-gray-400 font-bold mb-2" data-translate="total-price">Total Harga</label>
-                    <input type="text" id="totalPrice" name="totalPrice" class="w-full bg-gray-600 text-white rounded py-2 px-3" readonly>
-                    <p class="text-gray-500 text-sm mt-1" id="totalPriceIDR"></p>
+                  <label for="totalPrice" class="block text-gray-400 font-bold mb-2" data-translate="total-price">Total Harga</label>
+                  <input type="text" id="totalPrice" name="totalPrice" class="w-full bg-gray-600 text-white rounded py-2 px-3" readonly>
+                  <p class="text-gray-500 text-sm mt-1" id="totalPriceIDR"></p>
                 </div>
                 <div class="mb-4">
-                    <label for="paymentProof" class="block text-gray-400 font-bold mb-2" data-translate="payment-proof">Bukti Pembayaran</label>
-                    <input type="file" id="paymentProof" name="paymentProof" class="w-full bg-gray-600 text-white rounded py-2 px-3" accept="image/*" required>
+                  <label for="paymentProof" class="block text-gray-400 font-bold mb-2" data-translate="payment-proof">Bukti Pembayaran</label>
+                  <input type="file" id="paymentProof" name="paymentProof" class="w-full bg-gray-600 text-white rounded py-2 px-3" accept="image/*" required>
                 </div>
                 <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded animate-bounce" data-translate="submit-order">
-                    Kirim Pesanan
+                  Kirim Pesanan
                 </button>
-                </form>
+              </form>
             </div>
-            `;
-
-            updateTranslations(languageSelect.value);
-
-            const quantityDescription = document.getElementById('quantityDescription');
-            const quantity = document.getElementById('quantity');
-            const totalPrice = document.getElementById('totalPrice');
-            const totalPriceIDR = document.getElementById('totalPriceIDR');
-            const price = getServicePrice(serviceName);
-
-            switch (serviceName) {
-            case 'Jasa Harvest':
-            case 'Jasa Plant':
-            case 'Jasa Ghost':
-            case 'Jasa Clear':
-            case 'Jasa Collect & Put':
-                quantityDescription.textContent = 'per World';
-                break;
-            case 'Jasa Break':
-            case 'Jasa Move':
-                quantityDescription.textContent = 'per 2,500 Block or Seed';
-                break;
-            case 'Jasa GAUT':
-            case 'Jasa GAIA':
-            case 'Jasa UT':
-                quantityDescription.textContent = 'per Hour';
-                break;
-            }
-
-            quantity.addEventListener('input', () => {
-            const totalPriceWL = price * quantity.value;
-            totalPrice.value = totalPriceWL.toFixed(2) + ' WL';
-            totalPriceIDR.textContent = 'Rp ' + (totalPriceWL * 200).toLocaleString('id-ID');
-            });
-
-            preloader.classList.remove('active');
+          `;
+      
+          updateTranslations(languageSelect.value);
+          setupFormHandlers(serviceName);
+          preloader.classList.remove('active');
         }, 500);
-        }
-
-        function getServicePrice(serviceName) {
-        switch (serviceName) {
-            case 'Jasa Harvest':
-            case 'Jasa Plant':
-            case 'Jasa UT':
-            return 7;
-            case 'Jasa GAUT':
-            return 15;
-            case 'Jasa GAIA':
-            return 8;
-            case 'Jasa Collect & Put':
-            case 'Jasa Move':
-            return 3;
-            case 'Jasa Break':
-            return 10;
-            case 'Jasa Clear':
-            return 30;
-            case 'Jasa Ghost':
-            return 4;
-        }
-        }
-
+      }
+      
+      function setupFormHandlers(serviceName) {
+        const quantity = document.getElementById('quantity');
+        const totalPrice = document.getElementById('totalPrice');
+        const totalPriceIDR = document.getElementById('totalPriceIDR');
+        const quantityDescription = document.getElementById('quantityDescription');
         const orderFormData = document.getElementById('orderFormData');
-            orderFormData.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const formData = new FormData(orderFormData);
-            const orderData = {
+        const price = getServicePrice(serviceName);
+      
+        updateQuantityDescription(serviceName, quantityDescription);
+        setupQuantityHandler(quantity, totalPrice, totalPriceIDR, price);
+        setupFormSubmission(orderFormData);
+      }
+      
+      function updateQuantityDescription(serviceName, element) {
+        const descriptions = {
+          'Jasa Harvest': 'per World',
+          'Jasa Plant': 'per World',
+          'Jasa Ghost': 'per World',
+          'Jasa Clear': 'per World',
+          'Jasa Collect & Put': 'per World',
+          'Jasa Break': 'per 2,500 Block or Seed',
+          'Jasa Move': 'per 2,500 Block or Seed',
+          'Jasa GAUT': 'per Hour',
+          'Jasa GAIA': 'per Hour',
+          'Jasa UT': 'per Hour'
+        };
+        element.textContent = descriptions[serviceName] || '';
+      }
+      
+      function setupQuantityHandler(quantity, totalPrice, totalPriceIDR, price) {
+        quantity.addEventListener('input', () => {
+          const totalPriceWL = price * quantity.value;
+          totalPrice.value = totalPriceWL.toFixed(2) + ' WL';
+          totalPriceIDR.textContent = 'Rp ' + (totalPriceWL * 200).toLocaleString('id-ID');
+        });
+      }
+      
+      async function setupFormSubmission(form) {
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const formData = new FormData(form);
+          
+          try {
+            const paymentProofFile = formData.get('paymentProof');
+            const reader = new FileReader();
+            
+            reader.onload = async function() {
+              const base64Image = reader.result.split(',')[1];
+              
+              const orderData = {
                 serviceName: formData.get('serviceName'),
                 worldName: formData.get('worldName'),
                 ownerName: formData.get('ownerName'),
                 whatsappNumber: formData.get('whatsappNumber'),
                 quantity: formData.get('quantity'),
                 paymentMethod: formData.get('paymentMethod'),
-                totalPrice: formData.get('totalPrice')
+                totalPrice: formData.get('totalPrice'),
+                paymentProof: base64Image
+              };
+      
+              await sendOrderToTelegram(orderData);
             };
-            sendOrderToTelegram(orderData);
+      
+            reader.readAsDataURL(paymentProofFile);
+          } catch (error) {
+            console.error('Error processing form:', error);
+            showError('Terjadi kesalahan saat memproses formulir');
+          }
         });
-
-        function sendOrderToTelegram(orderData) {
-            const telegramBotToken = '7402046810:AAFm5LyFpkTgk-r3c_e3mpX2VAAq0WA9D-U';
-            const chatId = '-1002272136361';
-            const telegramApiUrl = `https://api.telegram.org/bot${telegramBotToken}/sendMessage`;
-          
-            const messageText = `
-              Pesanan Baru:
-              Nama Layanan: ${orderData.serviceName}
-              Nama World: ${orderData.worldName}
-              Nama Pemilik: ${orderData.ownerName}
-              Nomor WhatsApp: ${orderData.whatsappNumber}
-              Jumlah: ${orderData.quantity}
-              Metode Pembayaran: ${orderData.paymentMethod}
-              Total Harga: ${orderData.totalPrice}
-            `;
-          
-            fetch(telegramApiUrl, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({
-                chat_id: chatId,
-                text: messageText
-              })
+      }
+      
+      async function sendOrderToTelegram(orderData) {
+        const telegramBotToken = '7402046810:AAFm5LyFpkTgk-r3c_e3mpX2VAAq0WA9D-U';
+        const chatId = '-1002272136361';
+        
+        try {
+          // Send text message
+          const textMessage = `
+      🎮 Pesanan Baru:
+      🎯 Layanan: ${orderData.serviceName}
+      🌍 World: ${orderData.worldName}
+      👤 Pemilik: ${orderData.ownerName}
+      📱 WhatsApp: ${orderData.whatsappNumber}
+      📊 Jumlah: ${orderData.quantity}
+      💳 Pembayaran: ${orderData.paymentMethod}
+      💰 Total: ${orderData.totalPrice}
+          `;
+      
+          const textResponse = await fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              chat_id: chatId,
+              text: textMessage,
+              parse_mode: 'HTML'
             })
-              .then(response => {
-                if (response.ok) {
-                  Swal.fire({
-                    icon: 'success',
-                    title: 'Pesanan Anda telah diterima',
-                    text: 'Mohon untuk menunggu Proses Verifikasi dan Proses Pengiriman pesanan. Pesanan akan segera diKonfirmasi maksimal 1x24 Jam. Terima kasih!',
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true
-                  });
-                  resetForm();
-                } else {
-                  Swal.fire({
-                    icon: 'error',
-                    title: 'Terjadi Kesalahan',
-                    text: 'Gagal mengirim pesanan. Silakan coba lagi.',
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true
-                  });
-                }
-              })
-              .catch(error => {
-                console.error('Error:', error);
-                Swal.fire({
-                  icon: 'error',
-                  title: 'Terjadi Kesalahan',
-                  text: 'Gagal mengirim pesanan. Silakan coba lagi.',
-                  toast: true,
-                  position: 'top-end',
-                  showConfirmButton: false,
-                  timer: 3000,
-                  timerProgressBar: true
-                });
-              });
-          }
-
-          function resetForm() {
-            const orderSection = document.getElementById('order');
-            const serviceSection = document.getElementById('services');
-            orderSection.classList.add('hidden');
-            serviceSection.classList.remove('hidden', 'fade-out');
-            document.getElementById('orderFormData').reset();
-          }
+          });
+      
+          if (!textResponse.ok) throw new Error('Failed to send text message');
+      
+          // Send image
+          const imageResponse = await fetch(`https://api.telegram.org/bot${telegramBotToken}/sendPhoto`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              chat_id: chatId,
+              photo: `data:image/jpeg;base64,${orderData.paymentProof}`,
+              caption: '📎 Bukti Pembayaran'
+            })
+          });
+      
+          if (!imageResponse.ok) throw new Error('Failed to send image');
+      
+          showSuccess();
+          resetForm();
+        } catch (error) {
+          console.error('Error sending to Telegram:', error);
+          showError('Gagal mengirim pesanan');
+        }
+      }
+      
+      function showSuccess() {
+        Swal.fire({
+          icon: 'success',
+          title: 'Pesanan Berhasil',
+          text: 'Pesanan Anda telah diterima. Mohon tunggu konfirmasi dalam 1x24 jam.',
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true
+        });
+      }
+      
+      function showError(message) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: message,
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true
+        });
+      }
+      
+      function resetForm() {
+        const orderSection = document.getElementById('order');
+        const serviceSection = document.getElementById('services');
+        orderSection.classList.add('hidden');
+        serviceSection.classList.remove('hidden', 'fade-out');
+        document.getElementById('orderFormData').reset();
+      }
     </script>
 </body>
 </html>
