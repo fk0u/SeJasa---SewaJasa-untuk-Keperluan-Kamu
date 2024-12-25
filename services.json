@@ -58,5 +58,11 @@
       "price": 4,
       "description": "Jasa Ghost untuk 1 world.",
       "image": "ghost.jpg"
+    },
+    {
+      "name": "Jasa Midman",
+      "price": 15,
+      "description": "Jasa Midman untuk 1 Transaksi.",
+      "image": "gaut.jpg"
     }
   ]

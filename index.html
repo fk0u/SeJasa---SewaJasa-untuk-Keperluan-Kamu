@@ -138,9 +138,9 @@
 <body class="smooth-scroll">
   <header class="bg-gray-800 bg-opacity-90 py-4 fixed w-full z-10">
     <div class="container mx-auto flex justify-between items-center px-4">
-      <a href="#home" class="text-2xl font-bold header-gradient">SeJasa</a>
+      <a href="/" class="text-2xl font-bold header-gradient">SeJasa.id - v1</a>
       <nav class="hidden lg:flex space-x-4">
-        <a href="#home" class="text-green-400 hover:text-green-500">Home</a>
+        <a href="/" class="text-green-400 hover:text-green-500">Home</a>
         <a href="#services" class="text-green-400 hover:text-green-500">Services</a>
         <a href="#about" class="text-green-400 hover:text-green-500">About</a>
         <a href="#contact" class="text-green-400 hover:text-green-500">Contact Us</a>
@@ -159,7 +159,7 @@
     </div>
     <nav class="hidden lg:hidden bg-gray-800 bg-opacity-90 py-2" id="mobileMenu">
       <div class="container mx-auto flex flex-col space-y-2 px-4">
-        <a href="#home" class="text-green-400 hover:text-green-500">Home</a>
+        <a href="/" class="text-green-400 hover:text-green-500">Home</a>
         <a href="#services" class="text-green-400 hover:text-green-500">Services</a>
         <a href="#about" class="text-green-400 hover:text-green-500">About</a>
         <a href="#contact" class="text-green-400 hover:text-green-500">Contact Us</a>
@@ -471,7 +471,10 @@
             case 'Jasa GAUT':
             case 'Jasa GAIA':
             case 'Jasa UT':
-                quantityDescription.textContent = 'per Hour';
+                quantityDescription.textContent = 'per Hour/Jam';
+                break;
+            case 'Jasa Midman':
+                quantityDescription.textContent = 'per Transaction/Transaksi';
                 break;
             }
 
@@ -492,6 +495,7 @@
             case 'Jasa UT':
             return 7;
             case 'Jasa GAUT':
+            case 'Jasa Midman':
             return 15;
             case 'Jasa GAIA':
             return 8;
