@@ -13,7 +13,20 @@
             hamburger.classList.remove('open');
         }
         });
-    
+        
+        window.addEventListener('load', () => {
+            const preloader = document.querySelector('.preloader');
+        
+            // Aktifkan preloader
+            preloader.classList.add('active');
+        
+            // Biarkan preloader tampil selama 2 detik
+            setTimeout(() => {
+                preloader.classList.remove('active');
+                preloader.classList.add('fade-out');
+                }, 500); // Waktu fade-out sesuai dengan transition di CSS (0.5 detik)
+            }, 1000); // Waktu tampil preloader (2 detik)
+        
         //Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -106,6 +119,7 @@
       const selectedLanguage = languageSelectMobile.value;
       updateTranslations(selectedLanguage);
     });
+     
 
     fetch('services.json')
       .then(response => response.json())
@@ -211,6 +225,10 @@
                 case 'Jasa Midman':
                     quantityDescription.textContent = 'per Transaction/Transaksi';
                     break;
+                case 'Beli Diamond Lock':
+                case 'Beli World Lock':
+                case 'Beli BGL':
+                    quantityDescription.textContent = 'per Lock';
             }
     
             // Hitung total harga
@@ -303,6 +321,7 @@
                 return 7;
             case 'Jasa GAUT':
             case 'Jasa Midman':
+            case 'Jasa GrowScan':
                 return 15;
             case 'Jasa GAIA':
                 return 8;
@@ -315,5 +334,7 @@
                 return 30;
             case 'Jasa Ghost':
                 return 4;
+            case 'Beli Diamond Lock':
+                return 2550;
         }
     }    

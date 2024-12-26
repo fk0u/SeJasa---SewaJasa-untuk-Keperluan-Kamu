@@ -70,5 +70,11 @@
       "price": 15,
       "description": "Jasa GrowScan untuk 1x Scan [COMING SOON].",
       "image": "break.jpg"
+    },
+    {
+      "name": "Beli Diamond Lock",
+      "price": 2550,
+      "description": "Beli Diamond Lock dengan mudah di SeJasa aja",
+      "image": "break.jpg"
     }
   ]
