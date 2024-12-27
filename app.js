@@ -457,22 +457,23 @@
             case 'Jasa Harvest':
             case 'Jasa Plant':
             case 'Jasa UT':
-                return 7;
+            case 'Jasa Ghost':
+                return 4;
             case 'Jasa GAUT':
+                return 10;
             case 'Jasa Midman':
             case 'Jasa GrowScan':
                 return 15;
             case 'Jasa GAIA':
-                return 8;
+            case 'Jasa UT':
+                return 6;
             case 'Jasa Collect & Put':
             case 'Jasa Move':
                 return 3;
             case 'Jasa Break':
                 return 10;
             case 'Jasa Clear':
-                return 30;
-            case 'Jasa Ghost':
-                return 4;
+                return 15;
             case 'Beli Diamond Lock':
                 return 2550;
         }

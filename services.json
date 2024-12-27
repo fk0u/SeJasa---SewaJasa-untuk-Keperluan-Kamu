@@ -1,31 +1,31 @@
 [
     {
       "name": "Jasa Harvest",
-      "price": 7,
+      "price": 4,
       "description": "Jasa harvest untuk 1 world.",
       "image": "harvest.jpg"
     },
     {
       "name": "Jasa Plant",
-      "price": 7,
+      "price": 4,
       "description": "Jasa plant untuk 1 world.",
       "image": "plant.jpg"
     },
     {
       "name": "Jasa GAUT",
-      "price": 15,
+      "price": 10,
       "description": "Jasa GAUT untuk 1 jam.",
       "image": "gaut.jpg"
     },
     {
       "name": "Jasa GAIA",
-      "price": 8,
+      "price": 6,
       "description": "Jasa GAIA untuk 1 jam.",
       "image": "gaia.jpg"
     },
     {
       "name": "Jasa UT",
-      "price": 7,
+      "price": 6,
       "description": "Jasa UT untuk 1 jam.",
       "image": "ut.jpg"
     },
@@ -49,7 +49,7 @@
     },
     {
       "name": "Jasa Clear",
-      "price": 30,
+      "price": 15,
       "description": "Jasa Clear untuk 1 world.",
       "image": "clear.jpg"
     },
