@@ -119,26 +119,165 @@
       const selectedLanguage = languageSelectMobile.value;
       updateTranslations(selectedLanguage);
     });
-     
 
-    fetch('services.json')
-      .then(response => response.json())
-      .then(services => {
-        const serviceList = document.getElementById('serviceList');
-        services.forEach(service => {
-          const serviceCard = `
-            <div class="bg-gray-700 p-6 rounded-md shadow service-card">
-              <h3 class="text-xl font-bold">${service.name}</h3>
-              <p class="text-gray-400 mb-4">${service.description}</p>
-              <p class="text-green-400 font-bold text-lg">${service.price} WL</p>
-              <a href="#order" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mt-4 inline-block" data-translate="order-now" onclick="showOrderForm('${service.name}')">
-                Pesan Sekarang
-              </a>
-            </div>
-          `;
-          serviceList.innerHTML += serviceCard;
+    document.addEventListener('DOMContentLoaded', () => {
+        // Trusted Boards
+        const trustedBoards = [];
+        let trustedCurrentPage = 1;
+        const trustedItemsPerPage = 3;
+    
+        async function fetchTrustedBoards() {
+            const response = await fetch('trustboard.json');
+            const data = await response.json();
+            trustedBoards.push(...data);
+            renderTrustedBoards();
+            renderTrustedPagination();
+        }
+    
+        function renderTrustedBoards() {
+            const start = (trustedCurrentPage - 1) * trustedItemsPerPage;
+            const end = trustedCurrentPage * trustedItemsPerPage;
+            const currentData = trustedBoards.slice(start, end);
+    
+            const trustedBoardsContainer = document.getElementById('trustedBoards');
+            trustedBoardsContainer.innerHTML = '';
+    
+            currentData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'trusted-card';
+                card.innerHTML = `
+                    <div class="trusted-card-header">
+                        <span class="font-bold">${item.GrowID}</span>
+                        <span class="text-sm">${item.Tanggal}</span>
+                    </div>
+                    <div class="trusted-card-body">${item.Pesan}</div>
+                    <div class="trusted-card-footer">
+                        <i class="fas fa-thumbs-up"></i> Trusted
+                    </div>
+                `;
+                trustedBoardsContainer.appendChild(card);
+            });
+        }
+    
+        function renderTrustedPagination() {
+            const totalPages = Math.ceil(trustedBoards.length / trustedItemsPerPage);
+            const paginationContainer = document.getElementById('pagination');
+            paginationContainer.innerHTML = '';
+    
+            const prevButton = document.createElement('button');
+            prevButton.className = `pagination-btn ${trustedCurrentPage === 1 ? 'disabled' : ''}`;
+            prevButton.innerText = 'Prev';
+            prevButton.disabled = trustedCurrentPage === 1;
+            prevButton.addEventListener('click', () => changeTrustedPage(trustedCurrentPage - 1));
+            paginationContainer.appendChild(prevButton);
+    
+            for (let i = 1; i <= totalPages; i++) {
+                const pageButton = document.createElement('button');
+                pageButton.className = `pagination-btn ${trustedCurrentPage === i ? 'disabled' : ''}`;
+                pageButton.innerText = i;
+                pageButton.addEventListener('click', () => changeTrustedPage(i));
+                paginationContainer.appendChild(pageButton);
+            }
+    
+            const nextButton = document.createElement('button');
+            nextButton.className = `pagination-btn ${trustedCurrentPage === totalPages ? 'disabled' : ''}`;
+            nextButton.innerText = 'Next';
+            nextButton.disabled = trustedCurrentPage === totalPages;
+            nextButton.addEventListener('click', () => changeTrustedPage(trustedCurrentPage + 1));
+            paginationContainer.appendChild(nextButton);
+        }
+    
+        function changeTrustedPage(page) {
+            trustedCurrentPage = page;
+            renderTrustedBoards();
+            renderTrustedPagination();
+        }
+    
+        fetchTrustedBoards();
+    
+        // Services
+        const services = [];
+        let servicesCurrentPage = 1;
+        const servicesItemsPerPage = 6;
+        let filteredServices = [];
+    
+        fetch('services.json')
+            .then(response => response.json())
+            .then(data => {
+                services.push(...data);
+                filteredServices = [...services];
+                renderServices();
+                renderServicePagination();
+            });
+    
+        function renderServices() {
+            const serviceList = document.getElementById('serviceList');
+            const start = (servicesCurrentPage - 1) * servicesItemsPerPage;
+            const end = servicesCurrentPage * servicesItemsPerPage;
+            const currentServices = filteredServices.slice(start, end);
+    
+            serviceList.innerHTML = '';
+    
+            currentServices.forEach(service => {
+                const serviceCard = `
+                    <div class="bg-gray-700 p-6 rounded-md shadow service-card">
+                        <h3 class="text-xl font-bold">${service.name}</h3>
+                        <p class="text-gray-400 mb-4">${service.description}</p>
+                        <p class="text-green-400 font-bold text-lg">${service.price} WL</p>
+                        <a href="#order" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mt-4 inline-block" data-translate="order-now" onclick="showOrderForm('${service.name}')">
+                            Pesan Sekarang
+                        </a>
+                    </div>
+                `;
+                serviceList.innerHTML += serviceCard;
+            });
+        }
+    
+        function renderServicePagination() {
+            const totalPages = Math.ceil(filteredServices.length / servicesItemsPerPage);
+            const paginationContainer = document.getElementById('servicePagination');
+            paginationContainer.innerHTML = '';
+    
+            const prevButton = document.createElement('button');
+            prevButton.className = `pagination-btn ${servicesCurrentPage === 1 ? 'disabled' : ''}`;
+            prevButton.innerText = 'Prev';
+            prevButton.disabled = servicesCurrentPage === 1;
+            prevButton.addEventListener('click', () => changeServicePage(servicesCurrentPage - 1));
+            paginationContainer.appendChild(prevButton);
+    
+            for (let i = 1; i <= totalPages; i++) {
+                const pageButton = document.createElement('button');
+                pageButton.className = `pagination-btn ${servicesCurrentPage === i ? 'disabled' : ''}`;
+                pageButton.innerText = i;
+                pageButton.addEventListener('click', () => changeServicePage(i));
+                paginationContainer.appendChild(pageButton);
+            }
+    
+            const nextButton = document.createElement('button');
+            nextButton.className = `pagination-btn ${servicesCurrentPage === totalPages ? 'disabled' : ''}`;
+            nextButton.innerText = 'Next';
+            nextButton.disabled = servicesCurrentPage === totalPages;
+            nextButton.addEventListener('click', () => changeServicePage(servicesCurrentPage + 1));
+            paginationContainer.appendChild(nextButton);
+        }
+    
+        function changeServicePage(page) {
+            servicesCurrentPage = page;
+            renderServices();
+            renderServicePagination();
+        }
+    
+        document.getElementById('serviceSearch').addEventListener('input', () => {
+            const searchInput = document.getElementById('serviceSearch').value.toLowerCase();
+            filteredServices = services.filter(service =>
+                service.name.toLowerCase().includes(searchInput) ||
+                service.description.toLowerCase().includes(searchInput)
+            );
+            servicesCurrentPage = 1;
+            renderServices();
+            renderServicePagination();
         });
-      });
+    });    
 
       function showOrderForm(serviceName) {
         const serviceSection = document.getElementById('services');
