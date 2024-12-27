@@ -148,7 +148,7 @@
                 const card = document.createElement('div');
                 card.className = 'trusted-card';
                 card.innerHTML = `
-                    <div class="trusted-card-header">
+                    <div class="trusted-card-header flex ">
                         <span class="font-bold">${item.GrowID}</span>
                         <span class="text-sm">${item.Tanggal}</span>
                         <span class="text-sm">${item.Layanan}</span>

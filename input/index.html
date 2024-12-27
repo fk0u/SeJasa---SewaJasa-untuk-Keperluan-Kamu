@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Trusted Board</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<style>
+    body {
+      background: linear-gradient(to bottom right, #1F2937, #374151);
+      color: #F3F4F6;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .header-gradient {
+      background: linear-gradient(to right, #68D391, #F6E05E);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .golden-ratio {
+      padding-top: 61.8%;
+    }
+    .smooth-scroll {
+      scroll-behavior: smooth;
+    }
+    .service-card {
+      transition: transform 0.3s;
+    }
+    .service-card:hover {
+      transform: scale(1.05);
+    }
+    .trusted-card {
+      background-color: #374151;
+      border-radius: 10px;
+      padding: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .trusted-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .trusted-card-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .trusted-card-body {
+      font-size: 0.875rem;
+      color: #D1D5DB;
+    }
+    .trusted-card-footer {
+      margin-top: 16px;
+      text-align: right;
+      font-size: 0.75rem;
+      color: #F6E05E;
+    }
+    .pagination-btn {
+      background-color: #68D391;
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .pagination-btn:hover {
+      background-color: #48BB78;
+    }
+    .pagination-btn.disabled {
+      background-color: #4A5568;
+      cursor: not-allowed;
+    }
+    .hamburger {
+      cursor: pointer;
+      width: 24px;
+      height: 24px;
+      transition: all 0.25s;
+      position: relative;
+    }
+    .hamburger-top,
+    .hamburger-middle,
+    .hamburger-bottom {
+      position: absolute;
+      width: 24px;
+      height: 2px;
+      top: 0;
+      left: 0;
+      background: #fff;
+      transform: rotate(0);
+      transition: all 0.5s;
+    }
+    .hamburger-middle {
+      transform: translateY(7px);
+    }
+    .hamburger-bottom {
+      transform: translateY(14px);
+    }
+    .open .hamburger-top {
+      transform: rotate(45deg) translateY(6px) translateX(6px);
+    }
+    .open .hamburger-middle {
+      display: none;
+    }
+    .open .hamburger-bottom {
+      transform: rotate(-45deg) translateY(6px) translateX(-6px);
+    }
+    .preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .preloader.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 5px solid #fff;
+      border-top-color: #68D391;
+      animation: spin 1s infinite linear;
+    }
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    .fade-out {
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+    @media (max-width: 640px) {
+      .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+    }
+    .animate-pulse {
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
+    .animate-bounce {
+      animation: bounce 1s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(-5%);
+        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+      }
+      50% {
+        transform: translateY(0);
+        animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+      }
+    }
+  </style>
+<body class="bg-gray-800 text-white">
+    
+    <div class="container mx-auto my-10 p-4">
+        <div class="bg-gray-700 p-6 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-4 text-center">Tambah Data Trusted Board - SEJASA</h3>
+            <form id="trustedBoardForm">
+                <!-- GrowID -->
+                <div class="mb-4">
+                    <label for="growID" class="block text-gray-400 font-bold mb-2">GrowID</label>
+                    <input type="text" id="growID" name="growID" class="w-full bg-gray-600 text-white rounded py-2 px-3" required>
+                </div>
+
+                <!-- Tanggal -->
+                <div class="mb-4">
+                    <label for="tanggal" class="block text-gray-400 font-bold mb-2">Tanggal</label>
+                    <input type="date" id="tanggal" name="tanggal" class="w-full bg-gray-600 text-white rounded py-2 px-3" required>
+                </div>
+
+                <!-- Layanan -->
+                <div class="mb-4">
+                    <label for="layanan" class="block text-gray-400 font-bold mb-2">Layanan</label>
+                    <input type="text" id="layanan" name="layanan" class="w-full bg-gray-600 text-white rounded py-2 px-3" required>
+                </div>
+
+                <!-- Pesan -->
+                <div class="mb-4">
+                    <label for="pesan" class="block text-gray-400 font-bold mb-2">Pesan</label>
+                    <textarea id="pesan" name="pesan" class="w-full bg-gray-600 text-white rounded py-2 px-3" rows="4" required></textarea>
+                </div>
+
+                <!-- Kirim Pesanan -->
+                <div class="mb-4 flex justify-between items-center">
+                    <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded w-full">
+                        Kirim Pesanan
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Script untuk mengirim ke WhatsApp -->
+    <script>
+        document.getElementById('trustedBoardForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const growID = document.getElementById('growID').value;
+            const tanggal = document.getElementById('tanggal').value;
+            const layanan = document.getElementById('layanan').value;
+            const pesan = document.getElementById('pesan').value;
+
+            // Format pesan untuk dikirim ke WhatsApp
+            const message = `*New Trusted Board Entry*\n\n*GrowID:* ${growID}\n*Tanggal:* ${tanggal}\n*Layanan:* ${layanan}\n*Pesan:* ${pesan}`;
+
+            // URL WhatsApp API untuk mengirim pesan
+            const whatsappURL = `https://wa.me/62811103542?text=${encodeURIComponent(message)}`;
+
+            // Mengarahkan ke URL WhatsApp untuk membuka chat dan mengirim pesan
+            window.open(whatsappURL, '_blank');
+        });
+    </script>
+</body>
+</html>
