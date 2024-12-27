@@ -151,6 +151,7 @@
                     <div class="trusted-card-header">
                         <span class="font-bold">${item.GrowID}</span>
                         <span class="text-sm">${item.Tanggal}</span>
+                        <span class="text-sm">${item.Layanan}</span>
                     </div>
                     <div class="trusted-card-body">${item.Pesan}</div>
                     <div class="trusted-card-footer">
