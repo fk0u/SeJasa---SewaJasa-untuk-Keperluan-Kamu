@@ -352,6 +352,7 @@
                 case 'Jasa Ghost':
                 case 'Jasa Clear':
                 case 'Jasa Collect & Put':
+                case 'Jasa Splice':
                     quantityDescription.textContent = 'per World';
                     break;
                 case 'Jasa Break':
@@ -460,6 +461,7 @@
             case 'Jasa Plant':
             case 'Jasa UT':
             case 'Jasa Ghost':
+            case 'Jasa Splice':
                 return 4;
             case 'Jasa GAUT':
                 return 10;

@@ -12,6 +12,12 @@
       "image": "plant.jpg"
     },
     {
+      "name": "Jasa Splice",
+      "price": 4,
+      "description": "Jasa Splice untuk 1 world.",
+      "image": "splice.jpg"
+    },
+    {
       "name": "Jasa GAUT",
       "price": 10,
       "description": "Jasa GAUT untuk 1 jam.",
