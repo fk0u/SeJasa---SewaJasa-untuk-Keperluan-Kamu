@@ -176,50 +176,52 @@
   </style>
 </head>
 <body class="smooth-scroll">
-  <header class="bg-gray-800 bg-opacity-90 py-4 fixed w-full z-10">
-    <div class="container mx-auto flex justify-between items-center px-4">
-      <a href="/" class="text-2xl font-bold header-gradient">SeJasa.id - v1</a>
-      <nav class="hidden lg:flex space-x-4">
-        <a href="/" class="text-green-400 hover:text-green-500">Home</a>
-        <a href="#services" class="text-green-400 hover:text-green-500">Services</a>
-        <a href="#about" class="text-green-400 hover:text-green-500">About</a>
-        <a href="#contact" class="text-green-400 hover:text-green-500">Contact Us</a>
-        <select id="languageSelect" class="bg-gray-700 text-white rounded py-1 px-2">
-          <option value="id">Bahasa Indonesia</option>
-          <option value="en">English</option>
-        </select>
-      </nav>
-      <div class="lg:hidden">
-        <div class="hamburger" id="hamburger">
-          <div class="hamburger-top"></div>
-          <div class="hamburger-middle"></div>
-          <div class="hamburger-bottom"></div>
+    <header class="bg-gray-800 bg-opacity-90 py-4 fixed w-full z-20">
+      <div class="container mx-auto flex justify-between items-center px-4">
+        <a href="/" class="text-2xl font-bold header-gradient">SeJasa.id - v1</a>
+        <nav class="hidden lg:flex space-x-4">
+          <a href="/" class="text-green-400 hover:text-green-500">Home</a>
+          <a href="#services" class="text-green-400 hover:text-green-500">Services</a>
+          <a href="#about" class="text-green-400 hover:text-green-500">About</a>
+          <a href="#contact" class="text-green-400 hover:text-green-500">Contact Us</a>
+          <select id="languageSelect" class="bg-gray-700 text-white rounded py-1 px-2">
+            <option value="id">Bahasa Indonesia</option>
+            <option value="en">English</option>
+          </select>
+        </nav>
+        <div class="lg:hidden">
+          <div class="hamburger" id="hamburger">
+            <div class="hamburger-top"></div>
+            <div class="hamburger-middle"></div>
+            <div class="hamburger-bottom"></div>
+          </div>
         </div>
       </div>
-    </div>
-    <nav class="hidden lg:hidden bg-gray-800 bg-opacity-90 py-2" id="mobileMenu">
-      <div class="container mx-auto flex flex-col space-y-2 px-4">
-        <a href="/" class="text-green-400 hover:text-green-500">Home</a>
-        <a href="#services" class="text-green-400 hover:text-green-500">Services</a>
-        <a href="#about" class="text-green-400 hover:text-green-500">About</a>
-        <a href="#contact" class="text-green-400 hover:text-green-500">Contact Us</a>
-        <select id="languageSelectMobile" class="bg-gray-700 text-white rounded py-1 px-2">
-          <option value="id">Bahasa Indonesia</option>
-          <option value="en">English</option>
-        </select>
-      </div>
-    </nav>
+      <nav class="hidden lg:hidden bg-gray-800 bg-opacity-90 py-2" id="mobileMenu">
+        <div class="container mx-auto flex flex-col space-y-2 px-4">
+          <a href="/" class="text-green-400 hover:text-green-500">Home</a>
+          <a href="#services" class="text-green-400 hover:text-green-500">Services</a>
+          <a href="#about" class="text-green-400 hover:text-green-500">About</a>
+          <a href="#contact" class="text-green-400 hover:text-green-500">Contact Us</a>
+          <select id="languageSelectMobile" class="bg-gray-700 text-white rounded py-1 px-2">
+            <option value="id">Bahasa Indonesia</option>
+            <option value="en">English</option>
+          </select>
+        </div>
+      </nav>
   </header>
 
-  <section id="home" class="bg-gray-800 bg-opacity-80 py-28">
-    <div class="container mx-auto text-center px-4">
-      <h2 class="text-4xl font-bold mb-4 header-gradient animate-pulse" data-translate="home-title">Selamat Datang di SeJasa</h2>
-      <p class="text-xl mb-8" data-translate="home-description">Menyediakan layanan premium untuk pemain Growtopia</p>
-      <a href="#services" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded animate-bounce" data-translate="home-cta">
-        Jelajahi Layanan
-      </a>
-    </div>
+  <section id="home" class="bg-gray-800 bg-opacity-80 py-28 relative">
+      <div class="absolute inset-0 bg-cover bg-center opacity-20" style="background-image: url('assets/plant.gif');"></div>
+      <div class="container mx-auto text-center px-4 relative z-10">
+          <h2 class="text-4xl font-bold mb-4 header-gradient animate-pulse" data-translate="home-title">Selamat Datang di SeJasa</h2>
+          <p class="text-xl mb-8" data-translate="home-description">Menyediakan layanan premium untuk pemain Growtopia</p>
+          <a href="#services" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded animate-bounce" data-translate="home-cta">
+              Jelajahi Layanan
+          </a>
+      </div>
   </section>
+
 
   <section id="services" class="container mx-auto py-12 px-4">
     <h2 class="text-3xl font-bold mb-8 text-center header-gradient" data-translate="services-title">Layanan Kami</h2>
