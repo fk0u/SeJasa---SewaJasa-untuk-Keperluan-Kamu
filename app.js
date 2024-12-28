@@ -131,7 +131,10 @@
         async function fetchTrustedBoards() {
             const response = await fetch('trustboard.json');
             const data = await response.json();
-            trustedBoards.push(...data);
+    
+            // Sort by 'Tanggal' in descending order (newest first)
+            trustedBoards.push(...data.sort((a, b) => new Date(b.Tanggal) - new Date(a.Tanggal)));
+    
             renderTrustedBoards();
             renderTrustedPagination();
         }
@@ -196,7 +199,7 @@
             renderTrustedPagination();
         }
     
-        fetchTrustedBoards();
+        fetchTrustedBoards();    
     
         // Services
         const services = [];
